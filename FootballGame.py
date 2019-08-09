@@ -1,5 +1,6 @@
 from GameLoop import GameLoop
 import pygame
+from Objects.Ball import Ball
 
 
 class FootballGame(GameLoop):
@@ -7,6 +8,7 @@ class FootballGame(GameLoop):
         pass
 
     def init_objects(self):
+        self.objects.append(Ball(100, 100, 10, (255, 0, 0)))
         pass
 
     def __init__(self):
@@ -34,7 +36,7 @@ class FootballGame(GameLoop):
 
         # draw everything
         for obj in self.objects:
-            obj.render()
+            obj.render(self.screen)
 
         pygame.display.flip()
         self.clock.tick(self.fps)
