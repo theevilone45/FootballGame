@@ -3,11 +3,9 @@ from abc import abstractmethod
 
 class GameLoop:
     def __init__(self):
-        self.game_clock = None
-        self.screen = None
         self.is_open = True
 
-    def main_loop(self):
+    def start(self):
         while self.is_open:
             self.handle_events()
             self.update()
