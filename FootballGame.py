@@ -21,7 +21,6 @@ class FootballGame(GameLoop):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.is_open = False
-
         for obj in self.objects:
             obj.handle_events()
         pass
