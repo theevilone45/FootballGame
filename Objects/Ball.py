@@ -32,9 +32,6 @@ class Ball(GameObject):
         pass
 
     def handle_events(self):
-        pressed = pygame.key.get_pressed()
-        if pressed[pygame.K_SPACE] and self.force < 1:
-            self.apply_force(random.uniform(0, 2 * math.pi), 5)
         pass
 
     # angle in radians

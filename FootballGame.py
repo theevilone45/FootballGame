@@ -1,14 +1,15 @@
 from GameLoop import GameLoop
 import pygame
-from Objects.Ball import Ball
+import os
 
 
 class FootballGame(GameLoop):
     def load_resources(self):
+        self.pitch_image = pygame.image.load(os.path.join("GameEngine", "Images", "pitch.jpg"))
+        self.pitch_rect = self.pitch_image.get_rect()
         pass
 
     def init_objects(self):
-        self.objects.append(Ball(50, 50, 30, (255, 0, 0)))
         pass
 
     def __init__(self):
@@ -16,6 +17,8 @@ class FootballGame(GameLoop):
         pygame.init()
         self.screen = pygame.display.set_mode(self.resolution)
         self.clock = pygame.time.Clock()
+        self.pitch_image = None
+        self.pitch_rect = None
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -32,6 +35,7 @@ class FootballGame(GameLoop):
 
     def render(self):
         self.screen.fill(self.background_color)
+        self.screen.blit(self.pitch_image, self.pitch_rect)
 
         # draw everything
         for obj in self.objects:
