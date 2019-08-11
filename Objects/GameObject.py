@@ -1,11 +1,12 @@
 from abc import abstractmethod
-import math
+import pygame
 
 
 class GameObject:
     def __init__(self, x, y):
         self.pos_x = x
         self.pos_y = y
+        self.win_width, self.win_height = pygame.display.Info().current_w, pygame.display.Info().current_h
 
     def move(self, x, y):
         self.pos_x = x

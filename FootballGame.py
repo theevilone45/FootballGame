@@ -8,7 +8,7 @@ class FootballGame(GameLoop):
         pass
 
     def init_objects(self):
-        self.objects.append(Ball(100, 100, 10, (255, 0, 0)))
+        self.objects.append(Ball(50, 50, 30, (255, 0, 0)))
         pass
 
     def __init__(self):

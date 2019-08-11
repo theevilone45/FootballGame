@@ -6,14 +6,25 @@ import random
 
 class Ball(GameObject):
     def update(self):
+        if self.pos_y <= self.radius:
+            self.angle = 2 * math.pi - self.angle
+            self.pos_y = self.radius
+
+        if self.pos_y > self.win_height - self.radius:
+            self.angle = 2 * math.pi - self.angle
+            self.pos_y = self.win_height - self.radius
+
+        if self.pos_x <= self.radius:
+            self.angle = math.pi - self.angle
+            self.pos_x = self.radius
+
+        if self.pos_x > self.win_width - self.radius:
+            self.angle = math.pi - self.angle
+            self.pos_x = self.win_width - self.radius
+
         self.pos_x += self.force * math.cos(self.angle)
         self.pos_y += self.force * math.sin(self.angle)
         self.force *= 0.99
-        width, height = pygame.display.Info().current_w, pygame.display.Info().current_h
-        if self.pos_y <= self.radius or self.pos_y > height-self.radius:
-            self.angle = 2*math.pi-self.angle
-        if self.pos_x <= self.radius or self.pos_x > width-self.radius:
-            self.angle = math.pi-self.angle
         pass
 
     def render(self, screen):
@@ -22,8 +33,8 @@ class Ball(GameObject):
 
     def handle_events(self):
         pressed = pygame.key.get_pressed()
-        if pressed[pygame.K_SPACE]:
-            self.apply_force(random.uniform(0, 2 * math.pi), random.uniform(1, 6))
+        if pressed[pygame.K_SPACE] and self.force < 1:
+            self.apply_force(random.uniform(0, 2 * math.pi), 5)
         pass
 
     # angle in radians
