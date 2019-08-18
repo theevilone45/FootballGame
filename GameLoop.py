@@ -6,7 +6,8 @@ class GameLoop:
         self.is_open = True
         self.background_color = (0, 0, 0)
         self.fps = 60
-        self.resolution = (737, 479)
+        self.resolution = (1280, 720)
+        self.full_screen = False
         self.objects = []
 
     def start(self):

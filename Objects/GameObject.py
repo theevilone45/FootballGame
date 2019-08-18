@@ -21,5 +21,5 @@ class GameObject:
         pass
 
     @abstractmethod
-    def handle_events(self):
+    def handle_events(self, args=None):
         pass

@@ -2,6 +2,7 @@ from Objects.GameObject import GameObject
 import pygame
 import math
 import random
+from XInputManager import Controller
 
 
 class Ball(GameObject):
@@ -24,14 +25,18 @@ class Ball(GameObject):
 
         self.pos_x += self.force * math.cos(self.angle)
         self.pos_y += self.force * math.sin(self.angle)
-        self.force *= 0.99
+        self.force *= self.resistance
         pass
 
     def render(self, screen):
         pygame.draw.circle(screen, self.color, (int(self.pos_x), int(self.pos_y)), self.radius)
         pass
 
-    def handle_events(self):
+    def handle_events(self, args=None):
+        controller = Controller(0)
+        pressed = pygame.key.get_pressed()
+        if pressed[pygame.K_SPACE] or controller.get_button_state(0) == 1:
+            self.apply_force(random.uniform(0, 2 * math.pi), random.uniform(10, 20))
         pass
 
     # angle in radians
@@ -46,4 +51,5 @@ class Ball(GameObject):
         self.color = color
         self.angle = 0
         self.force = 0
+        self.resistance = 0.92
         pass
